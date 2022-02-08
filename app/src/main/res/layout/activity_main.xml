@@ -89,7 +89,7 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/btnshape"
         android:text="Submit"
-        android:onClick="@{(v) -> LoginViewModel.getData(v)}"
+        android:onClick="@{(v) -> LoginViewModel.onClick(v)}"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName3"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName3"

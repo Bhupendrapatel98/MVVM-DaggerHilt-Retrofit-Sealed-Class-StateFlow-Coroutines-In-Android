@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 class RegisterRepo @Inject constructor(private val postApiService: PostApiService) {
 
-    fun register(registrationSend:RegistrationSend):Flow<RegistrationResponse> = flow{
+    fun register(registrationSend: RegistrationSend): Flow<RegistrationResponse> = flow {
         val response = postApiService.register(registrationSend)
         emit(response)
     }.flowOn(Dispatchers.IO)

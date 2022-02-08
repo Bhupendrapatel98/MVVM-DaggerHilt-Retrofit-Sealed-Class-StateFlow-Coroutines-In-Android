@@ -14,18 +14,18 @@ import javax.inject.Singleton
 class AppModule {
 
     @Provides
-    fun provideBaseUrl():String = "http://restapi.adequateshop.com/api/authaccount/"
+    fun provideBaseUrl(): String = "http://restapi.adequateshop.com/api/authaccount/"
 
     @Provides
     @Singleton
-    fun provideRetrofitBuilder(baseUrl:String):Retrofit =
+    fun provideRetrofitBuilder(baseUrl: String): Retrofit =
         Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
     @Provides
-    fun provideApiPostService(retrofit: Retrofit):PostApiService =
+    fun provideApiPostService(retrofit: Retrofit): PostApiService =
         retrofit.create(PostApiService::class.java)
 
 }
