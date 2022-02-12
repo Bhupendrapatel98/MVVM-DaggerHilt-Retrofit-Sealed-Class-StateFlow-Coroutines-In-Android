@@ -15,7 +15,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#000"
-    tools:context=".ui.view.MainActivity">
+    tools:context=".ui.view.LoginActivity">
 
     <ImageView
         android:id="@+id/imageView5"
@@ -108,7 +108,6 @@
         android:paddingTop="10dp"
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
-        android:text="@={LoginViewModel.name}"
         android:ems="10"
         android:background="@drawable/btnshape"
         android:inputType="textPersonName"

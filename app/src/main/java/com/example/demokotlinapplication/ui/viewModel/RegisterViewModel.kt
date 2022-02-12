@@ -1,23 +1,27 @@
 package com.example.demokotlinapplication.ui.viewModel
 
+import android.content.Context
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.demokotlinapplication.data.repository.RegisterRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.LiveData
-import com.example.demokotlinapplication.data.model.LoginSend
 import com.example.demokotlinapplication.data.model.RegistrationResponse
-import com.example.demokotlinapplication.data.repository.LoginRepo
+import com.example.demokotlinapplication.data.model.RegistrationSend
 import com.example.demokotlinapplication.utils.Resource
 import kotlinx.coroutines.flow.catch
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val loginRepo: LoginRepo) : ViewModel() {
+class RegisterViewModel @Inject constructor(private val registerRepo: RegisterRepo) : ViewModel() {
 
     var emailAddress = MutableLiveData<String>()
+    var name = MutableLiveData<String>()
     var password = MutableLiveData<String>()
 
     private val _postLiveData = MutableLiveData<Resource<RegistrationResponse>>()
@@ -26,8 +30,9 @@ class LoginViewModel @Inject constructor(private val loginRepo: LoginRepo) : Vie
 
     fun onClick(view: View?) {
 
-        val loginUser = LoginSend(
+        val loginUser = RegistrationSend(
             emailAddress.value.toString(),
+            name.value.toString(),
             Integer.parseInt(password.value.toString())
         )
 
@@ -35,7 +40,7 @@ class LoginViewModel @Inject constructor(private val loginRepo: LoginRepo) : Vie
             //loading
             _postLiveData.value = Resource.loading()
 
-            loginRepo.login(loginUser)
+            registerRepo.register(loginUser)
                 .catch { e ->
                     //faild
                     _postLiveData.value = Resource.failed(e.message.toString())
